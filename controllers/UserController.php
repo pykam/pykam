@@ -6,6 +6,7 @@ use yii\rest\ActiveController;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
 use yii\filters\auth\HttpBearerAuth;
+use yii\filters\AccessControl;
 
 use app\models\User;
 
@@ -32,7 +33,10 @@ class UserController extends ActiveController
                 
                 HttpBearerAuth::class,
             ],
+            
         ];
+        $behaviors['authentificator']['except'] = ['create'];
+
         return $behaviors;
     }
 
